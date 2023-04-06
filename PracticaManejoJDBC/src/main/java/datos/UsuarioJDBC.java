@@ -44,4 +44,54 @@ public class UsuarioJDBC {
         }
         return users;
     }
+
+    public int inserte(Usuario user) {
+
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        int registroInserts = 0;
+        try {
+            conn = getConnection();
+            stmt = conn.prepareStatement(SQL_INSERT);
+            stmt.setString(1, user.getUserName());
+            stmt.setString(2, user.getUserPassword());
+            registroInserts = stmt.executeUpdate();
+
+            System.out.println("Registros Insertados = " + registroInserts);
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            try {
+                close(stmt);
+                close(conn);
+            } catch (SQLException ex) {
+                ex.printStackTrace(System.out);
+            }
+            return registroInserts;
+        }
+    }
+
+    public int actualizar(Usuario user) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        int registroAct = 0;
+        try{
+            conn = getConnection();
+            stmt = conn.prepareStatement(SQL_UPDATE);
+            stmt.setString(1, user.getUserName());
+            stmt.setString(2, user.getUserPassword());
+            registroAct = stmt.executeUpdate();
+            System.out.println("Registros de Actualizacion = " + registroAct);
+        } catch (SQLException ex){
+            ex.printStackTrace(System.out);
+        } finally {
+            try {
+                close(stmt);
+                close(conn);
+            }catch (SQLException ex) {
+                ex.printStackTrace(System.out);
+            }
+        }
+        return registroAct;
+    }
 }
