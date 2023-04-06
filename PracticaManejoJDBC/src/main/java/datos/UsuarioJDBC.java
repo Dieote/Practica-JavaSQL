@@ -22,7 +22,7 @@ public class UsuarioJDBC {
 
         try {
             conn = getConnection();
-            stmt = conn.preprareStatement(SQL_SELECT);
+            stmt = conn.prepareStatement(SQL_SELECT);
             res = stmt.executeQuery();
             while (res.next()) {
                 int idUser = res.getInt("idUser");
