@@ -7,10 +7,10 @@ import java.util.*;
 
 public class UsuarioJDBC {
 
-    public static final String SQL_SELECT = "SELECT (idUser, userName, userPassword) FROM usuario";
+    public static final String SQL_SELECT = "SELECT (id_User, userName, userPassword) FROM usuario";
     public static final String SQL_INSERT = "INSERT INTO usuario (userName, userPassword) VALUES (?, ?)";
-    public static final String SQL_UPDATE = "UPDATE usuario SET userName = ?, userPassword = ? WHERE idUser ?";
-    public static final String SQL_DELETE = "DELETE FROM usuario WHERE idUser = ?";
+    public static final String SQL_UPDATE = "UPDATE usuario SET userName = ?, userPassword = ? WHERE id_User ?";
+    public static final String SQL_DELETE = "DELETE FROM usuario WHERE id_User = ?";
 
     public List<Usuario> seleccion() {
 
@@ -25,10 +25,10 @@ public class UsuarioJDBC {
             stmt = conn.prepareStatement(SQL_SELECT);
             res = stmt.executeQuery();
             while (res.next()) {
-                int idUser = res.getInt("idUser");
+                int id_User = res.getInt("id_User");
                 String userName = res.getString("userName");
                 String userPassword = res.getString("userPassword");
-                user = new Usuario(idUser, userName, userPassword);
+                user = new Usuario(id_User, userName, userPassword);
                 users.add(user);
             }
         } catch (SQLException ex) {
@@ -93,5 +93,28 @@ public class UsuarioJDBC {
             }
         }
         return registroAct;
+    }
+    public int eliminar (Usuario user){
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        int registroDelete = 0;
+        try {
+            conn = getConnection();
+            stmt = conn.prepareStatement(SQL_DELETE);
+            stmt.setInt(1, user.getId_User());
+            registroDelete = stmt.executeUpdate();
+            System.out.println("Registros eliminados = " + registroDelete);
+            
+        }catch (SQLException ex){
+            ex.printStackTrace(System.out);
+        } finally {
+            try {
+                close(stmt);
+                close(conn);
+            }catch (SQLException ex) {
+                ex.printStackTrace(System.out);
+            }
+        }
+        return registroDelete;
     }
 }
