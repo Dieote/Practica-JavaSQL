@@ -57,7 +57,7 @@ public class UsuarioJDBC {
             stmt.setString(2, user.getUserPassword());
             registroInserts = stmt.executeUpdate();
 
-            System.out.println("Registros Insertados = " + registroInserts);
+            System.out.println("Registros de Usuarios Insertados = " + registroInserts);
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
         } finally {
@@ -81,7 +81,7 @@ public class UsuarioJDBC {
             stmt.setString(1, user.getUserName());
             stmt.setString(2, user.getUserPassword());
             registroAct = stmt.executeUpdate();
-            System.out.println("Registros de Actualizacion = " + registroAct);
+            System.out.println("Registros de Usuarios Actualizados = " + registroAct);
         } catch (SQLException ex){
             ex.printStackTrace(System.out);
         } finally {
@@ -103,7 +103,7 @@ public class UsuarioJDBC {
             stmt = conn.prepareStatement(SQL_DELETE);
             stmt.setInt(1, user.getId_User());
             registroDelete = stmt.executeUpdate();
-            System.out.println("Registros eliminados = " + registroDelete);
+            System.out.println("Registros de Usuarios eliminados = " + registroDelete);
             
         }catch (SQLException ex){
             ex.printStackTrace(System.out);
