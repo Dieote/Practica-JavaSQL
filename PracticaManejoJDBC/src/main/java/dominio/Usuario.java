@@ -40,11 +40,11 @@ public class Usuario {
         this.userName = userName;
     }
 
-    public String getPassword() {
+    public String getUserPassword() {
         return userPassword;
     }
 
-    public void setPassword(String userPassword) {
+    public void setUserPassword(String userPassword) {
         this.userPassword = userPassword;
     }
     
