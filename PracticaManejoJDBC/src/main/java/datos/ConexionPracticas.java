@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class ConexionPracticas {
 
-    private static final String url = "jdbc:mysql://localhost:3306/test?useSSL=false&useTimezone=true&serverTimezone=UTC&allowPublicKeyRetrieval=true";
+    private static final String url = "jdbc:mysql://localhost:3306/Practica-PersonaUsuario_JDBC?useSSL=false&useTimezone=true&serverTimezone=UTC&allowPublicKeyRetrieval=true";
 
     private static final String JDBC_USER = "user";
     private static final String JDBC_PASSWORD = "123456789";

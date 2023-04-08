@@ -20,7 +20,6 @@ public class MainUsuarios {
             usuarios.add(new Usuario("luch099", "kakre1421"));
             usuarios.add(new Usuario("JOse193", "daND2ll1"));
             usuarios.add(new Usuario("JOse193", "daND2ll1"));
-            System.out.println("usuarios sin Modificar  = " + usuario);
             
             //Actualizamos Usuario
             Usuario userUp = new Usuario(3, "Andiy", "fre21Str");

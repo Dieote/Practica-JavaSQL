@@ -1,19 +1,16 @@
 package datos;
 
 import static datos.ConexionPracticas.*;
-import static datos.UsuarioJDBC.SQL_DELETE;
-import static datos.UsuarioJDBC.SQL_INSERT;
 import dominio.Persona;
-import dominio.Usuario;
 import java.sql.*;
 import java.util.*;
 
 public class PersonaJDBC {
 
-    public static final String SQL_SELECT = "SELECT idPerson, namePerson, surnamePerson, yearsPerson, emailPerson FROM usuario";
-    public static final String SQL_INSERT = "INSERT INTO usuario (idPerson, namePerson, yearsPerson, emailPerson) VALUES (?, ?, ?, ?)";
-    public static final String SQL_UPDATE = "UPDATE usuario SET namePerson = ?, surnamePerson = ?, yearsPerson = ?, emailPerson = ? WHERE id_User ?";
-    public static final String SQL_DELETE = "DELETE FROM usuario WHERE idPerson = ?";
+    public static final String SQL_SELECT = "SELECT idPerson, namePerson, surnamePerson, yearsPerson, emailPerson FROM persona";
+    public static final String SQL_INSERT = "INSERT INTO persona (idPerson, namePerson, yearsPerson, emailPerson) VALUES (?, ?, ?, ?)";
+    public static final String SQL_UPDATE = "UPDATE persona SET namePerson = ?, surnamePerson = ?, yearsPerson = ?, emailPerson = ? WHERE idPerson ?";
+    public static final String SQL_DELETE = "DELETE FROM persona WHERE idPerson = ?";
 
     public List<Persona> seleccionar() {
         Connection conn = null;
