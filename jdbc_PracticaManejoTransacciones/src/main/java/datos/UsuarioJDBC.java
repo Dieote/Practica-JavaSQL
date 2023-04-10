@@ -44,7 +44,9 @@ public class UsuarioJDBC {
             try {
                 close(res);
                 close(stmt);
-                close(conn);
+                if (this.conexionTransaccional == null) {
+                ConexionPracticas.close(conn);
+            }
             } catch (SQLException ex) {
                 ex.printStackTrace(System.out);
             }
@@ -52,8 +54,7 @@ public class UsuarioJDBC {
         return users;
     }
 
-    public int inserte(Usuario user) throws SQLExceptio {
-
+    public int inserte(Usuario user) throws SQLException {
         Connection conn = null;
         PreparedStatement stmt = null;
         int registroInserts = 0;
@@ -62,13 +63,15 @@ public class UsuarioJDBC {
             stmt = conn.prepareStatement(SQL_INSERT);
             stmt.setString(1, user.getUserName());
             stmt.setString(2, user.getUserPassword());
+            
             registroInserts = stmt.executeUpdate();
-
             System.out.println("Registros de Usuarios Insertados = " + registroInserts);
         } finally {
             try {
                 close(stmt);
-                close(conn);
+                if (this.conexionTransaccional == null) {
+                ConexionPracticas.close(conn);
+            }
             } catch (SQLException ex) {
                 ex.printStackTrace(System.out);
             }
@@ -76,7 +79,7 @@ public class UsuarioJDBC {
         }
     }
 
-    public int actualizar(Usuario user) throws SQLExceptio{
+    public int actualizar(Usuario user) throws SQLException {
         Connection conn = null;
         PreparedStatement stmt = null;
         int registroAct = 0;
@@ -90,8 +93,9 @@ public class UsuarioJDBC {
         } finally {
             try {
                 close(stmt);
-                close(conn);
-            }catch (SQLException ex) {
+                if (this.conexionTransaccional == null) {
+                ConexionPracticas.close(conn);
+            }            }catch (SQLException ex) {
                 ex.printStackTrace(System.out);
             }
         }
@@ -110,8 +114,9 @@ public class UsuarioJDBC {
         } finally {
             try {
                 close(stmt);
-                close(conn);
-            }catch (SQLException ex) {
+                if (this.conexionTransaccional == null) {
+                ConexionPracticas.close(conn);
+            }            }catch (SQLException ex) {
                 ex.printStackTrace(System.out);
             }
         }
